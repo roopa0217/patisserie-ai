@@ -173,8 +173,10 @@ def find_recipes(query: str, restrict_to_name: str | None = None) -> dict:
         }
 
     # ── Phase 2.5: section expansion ─────────────────────────────────────────
-    # If any matched recipe belongs to a named section (e.g. "Berliner Variations"),
-    # include all sibling recipes from that section so the full group is returned.
+    # Include sibling recipes from the same section, matched two ways:
+    #   1. Exact: another recipe has the same parent_section value
+    #   2. Keyword: another recipe's parent_section shares a significant word with
+    #      a matched recipe name (e.g. "Berliner Variations" ↔ "Doughnut / Berliner")
     matched_set = set(matched)
     sections_seen: set[str] = set()
     for chunks in [by_recipe.get(r, []) for r in matched]:
@@ -182,12 +184,27 @@ def find_recipes(query: str, restrict_to_name: str | None = None) -> dict:
             if c.parent_section:
                 sections_seen.add(c.parent_section)
 
+    # Significant words from matched recipe names (length > 3, lowercased)
+    _STOP = {"and", "with", "the", "for", "from"}
+    anchor_words: set[str] = set()
+    for name in matched:
+        anchor_words.update(
+            w.lower() for w in name.split() if len(w) > 3 and w.lower() not in _STOP
+        )
+
+    def _section_matches(section: str) -> bool:
+        if section in sections_seen:
+            return True
+        low = section.lower()
+        return any(word in low for word in anchor_words)
+
     for recipe_name, chunks in by_recipe.items():
         if recipe_name in matched_set:
             continue
-        if any(c.parent_section in sections_seen for c in chunks):
+        if any(c.parent_section and _section_matches(c.parent_section) for c in chunks):
             all_chunks.extend(chunks)
             matched.append(recipe_name)
+            matched_set.add(recipe_name)
 
     return {
         "chunks": all_chunks,

@@ -87,18 +87,18 @@ def _recipe_name_search(q: str, by_recipe: dict) -> list[str]:
     """
     Name-only search: no semantic fallback, no hallucination.
 
-    Two passes:
-      1. Exact word match   — every query word appears in the recipe name.
-      2. Fuzzy match        — handles minor typos using SequenceMatcher on
-                              individual words vs name words (cutoff 0.82).
+    Three passes:
+      1. Exact word match against recipe name.
+      2. Fuzzy match against recipe name (handles minor typos, cutoff 0.82).
+      3. Component name match — query words found in a component name;
+         returns the parent recipe so the full recipe is shown.
 
-    Returns an empty list when nothing genuinely matches — the caller should
-    NOT fall back to semantic search; better to show "no results" than random recipes.
+    Returns an empty list when nothing genuinely matches.
     """
     q_words = q.lower().split()
     names = [n for n in by_recipe if n]
 
-    # Pass 1: every query word appears verbatim in the name
+    # Pass 1: every query word appears verbatim in the recipe name
     exact = [
         n for n in names
         if all(w in n.lower() for w in q_words)
@@ -117,7 +117,22 @@ def _recipe_name_search(q: str, by_recipe: dict) -> list[str]:
         n for n in names
         if all(_word_matches(w, n) for w in q_words)
     ]
-    return fuzzy
+    if fuzzy:
+        return fuzzy
+
+    # Pass 3: search component names — return the parent recipe
+    seen: set[str] = set()
+    component_hits: list[str] = []
+    for recipe_name, chunks in by_recipe.items():
+        if recipe_name in seen:
+            continue
+        for chunk in chunks:
+            comp = chunk.component_name.lower()
+            if all(w in comp for w in q_words):
+                component_hits.append(recipe_name)
+                seen.add(recipe_name)
+                break
+    return component_hits
 
 
 @app.get("/recipes/search")
@@ -136,6 +151,20 @@ def recipe_search(q: str = ""):
 
     if not matched:
         return {"query": q, "recipes": [], "all_names": []}
+
+    # Section expansion: also include sibling recipes whose parent_section shares
+    # a keyword with a matched recipe name (e.g. "Berliner Variations" ↔ "Doughnut / Berliner")
+    _STOP = {"and", "with", "the", "for", "from"}
+    anchor_words = {w.lower() for n in matched for w in n.split() if len(w) > 3 and w.lower() not in _STOP}
+    matched_set = set(matched)
+    for name, chunks in by_recipe.items():
+        if name in matched_set:
+            continue
+        for c in chunks:
+            if c.parent_section and any(word in c.parent_section.lower() for word in anchor_words):
+                matched.append(name)
+                matched_set.add(name)
+                break
 
     from collections import defaultdict
     by_recipe_chunks: dict = defaultdict(list)
@@ -161,6 +190,7 @@ def recipe_search(q: str = ""):
         recipes_out.append({
             "recipe_name": name,
             "source_file": recipe_chunks[0].source_file,
+            "section": recipe_chunks[0].parent_section or "",
             "components": components,
         })
 

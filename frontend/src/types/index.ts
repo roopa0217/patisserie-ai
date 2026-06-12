@@ -70,6 +70,7 @@ export interface RecipeComponent {
 export interface RecipeData {
   recipe_name: string
   source_file: string
+  section?: string
   components: RecipeComponent[]
 }
 

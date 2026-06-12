@@ -119,9 +119,35 @@ export default function RecipeSearchView() {
               <p className="text-ink-faint text-xs mt-1">Try uploading the relevant PDF via Upload Recipe Books</p>
             </div>
           )}
-          {result && !loading && result.recipes.map(recipe => (
-            <RecipeCard key={recipe.recipe_name} recipe={recipe} />
-          ))}
+          {result && !loading && (() => {
+            const recipes = result.recipes
+            const sections = [...new Set(recipes.map(r => r.section || ''))]
+            const grouped = sections.length > 1
+
+            if (!grouped) {
+              return recipes.map(recipe => (
+                <RecipeCard key={recipe.recipe_name} recipe={recipe} />
+              ))
+            }
+
+            return sections.map(section => {
+              const group = recipes.filter(r => (r.section || '') === section)
+              return (
+                <div key={section || '__none'}>
+                  {section && (
+                    <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-ink-faint mb-2 mt-4 first:mt-0">
+                      {section}
+                    </p>
+                  )}
+                  <div className="space-y-4">
+                    {group.map(recipe => (
+                      <RecipeCard key={recipe.recipe_name} recipe={recipe} />
+                    ))}
+                  </div>
+                </div>
+              )
+            })
+          })()}
         </div>
       </div>
 

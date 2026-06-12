@@ -48,7 +48,7 @@ _SKIP_TOKENS = {
 
 # Verb prefixes that flag a numbered line as a method instruction, not a recipe name
 _METHOD_VERBS = re.compile(
-    r"^(mix|add|bake|heat|pour|combine|cut|brush|arrange|cook|decrease|roll|fold|"
+    r"^(mix|add|bake|heat|preheat|pour|combine|cut|brush|arrange|cook|decrease|roll|fold|"
     r"whisk|melt|cool|chill|rest|proof|fry|boil|simmer|stir|transfer|reserve|place|"
     r"allow|continue|repeat|remove|prepare|knead|shape|pipe|fill|coat|dip|drain|"
     r"flash|use|apply|make|set|let|leave|check|test|for\s|"
@@ -68,7 +68,7 @@ def _looks_like_method_step(name: str) -> bool:
         return True
     low = name.lower()
     if any(tok in low for tok in [
-        "°c", "°f", "minutes", "until", " then ", "°",
+        "°c", "°f", "ºc", "ºf", "minutes", "until", " then ", "°", "º",
         " aside", " till ", "before use", "as required", " further ", "melted ",
         "and set", "till smooth", "to a smooth",
     ]):
@@ -105,7 +105,7 @@ def _is_component_header(line: str) -> bool:
         return False
     # Must be entirely uppercase (ignoring spaces, digits, &, comma, #, -)
     alpha_chars = re.sub(r"[^a-zA-Z]", "", stripped)
-    if not alpha_chars:
+    if len(alpha_chars) < 3:  # "(G)", "X1" etc. are not component headers
         return False
     return alpha_chars == alpha_chars.upper()
 
@@ -296,7 +296,7 @@ class _ParserState:
         low = stripped.lower()
 
         # ── Table header → enter ingredients mode ─────────────────────────
-        if "ingredients" in low and "qty" in low:
+        if "ingredients" in low and ("qty" in low or "quantity" in low):
             self.at_page_start = False
             self.in_ingredients = True
             self.in_method = False
@@ -385,9 +385,25 @@ class _ParserState:
 
     def _parse_ingredient_line(self, stripped: str) -> None:
         """
-        Parse: "Ingredient Name  qty  pct%"  or  "Ingredient Name  qty"
+        Parse ingredient rows. Handles three table formats:
+          - "Name qty pct%"           (standard 3-column)
+          - "Name qty"                (2-column, no pct)
+          - "Name X1_qty X2_qty pct%" (multi-column: e.g. "X1 Qty, X1/2 Qty, %")
         Uses rsplit from the right so multi-word ingredient names are preserved.
+        For multi-column tables, the first (X1 / full batch) quantity is used.
         """
+        # Multi-column check: 4 tokens where the middle two are both numeric
+        parts4 = stripped.rsplit(None, 3)
+        if len(parts4) == 4:
+            qty_val = _parse_float(parts4[1])
+            qty_val2 = _parse_float(parts4[2])
+            if qty_val is not None and qty_val2 is not None:
+                pct_val = _parse_float(parts4[3])
+                self.current_ingredients.append(
+                    Ingredient(name=parts4[0], qty_g=qty_val, pct=pct_val)
+                )
+                return
+
         parts = stripped.rsplit(None, 2)
         if len(parts) < 2:
             return

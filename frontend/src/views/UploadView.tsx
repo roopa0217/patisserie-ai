@@ -26,7 +26,7 @@ export default function UploadView() {
     setUploadMsg(null)
     try {
       const result = await uploadPdf(file)
-      setUploadMsg({ text: `${result.recipes ?? '?'} recipes ingested from "${file.name}".`, ok: true })
+      setUploadMsg({ text: `Recipes ingested from "${file.name}".`, ok: true })
       await loadStats()
     } catch (e: unknown) {
       setUploadMsg({ text: (e as Error).message ?? 'Upload failed', ok: false })
@@ -125,9 +125,7 @@ export default function UploadView() {
           <div className="mt-6 rounded-xl border border-stone bg-sand px-5 py-4 flex items-center justify-between">
             <div>
               <p className="text-[9px] text-ink-faint uppercase tracking-[0.2em] font-medium mb-1">Knowledge Base</p>
-              <p className="text-sm text-ink font-light">
-                <span className="font-medium text-ink">{stats.pinecone_vectors}</span> recipes indexed
-              </p>
+              <p className="text-sm text-ink font-light">Recipes indexed</p>
             </div>
             <div className="w-8 h-8 rounded-full bg-linen border border-stone flex items-center justify-center">
               <svg className="w-4 h-4 text-ink-faint" fill="none" viewBox="0 0 20 20" stroke="currentColor" strokeWidth="1.5">
