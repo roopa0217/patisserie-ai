@@ -40,6 +40,15 @@ def check_anomalies(recipe_name: str) -> dict:
         return {"error": True, "message": "No threshold rules loaded."}
 
     chunks = retrieve_recipe_by_name(recipe_name)
+
+    # Guard against the retriever's fallback returning unrelated top-k chunks.
+    name_lower = recipe_name.lower()
+    if chunks and not any(
+        name_lower in c.recipe_name.lower() or c.recipe_name.lower() in name_lower
+        for c in chunks
+    ):
+        chunks = []
+
     structured = [c for c in chunks if c.ingredients]
 
     if not structured:
@@ -54,26 +63,51 @@ def check_anomalies(recipe_name: str) -> dict:
 
     for chunk in structured:
         for rule in rules:
-            min_g = rule.get("min_g", 0.0)
-            max_g = rule.get("max_g", float("inf"))
-
             for ing in chunk.ingredients:
                 if not _matches(ing.name, rule):
                     continue
 
-                passed = min_g <= ing.qty_g <= max_g
-                results.append(
-                    AnomalyResult(
-                        ingredient=ing.name,
-                        component=chunk.component_name,
-                        recipe=chunk.recipe_name,
-                        actual_g=ing.qty_g,
-                        min_g=min_g,
-                        max_g=max_g,
-                        passed=passed,
-                        advice=rule.get("advice", "") if not passed else "",
+                if "max_pct" in rule and chunk.total_g > 0:
+                    # Ratio-based check: compare ingredient as % of component weight
+                    actual_pct = round(ing.qty_g / chunk.total_g * 100, 2)
+                    min_pct = rule.get("min_pct", 0.0)
+                    max_pct = rule["max_pct"]
+                    passed = min_pct <= actual_pct <= max_pct
+                    advice = (
+                        rule.get("advice", "").format(actual_pct=actual_pct)
+                        if not passed else ""
                     )
-                )
+                    results.append(
+                        AnomalyResult(
+                            ingredient=ing.name,
+                            component=chunk.component_name,
+                            recipe=chunk.recipe_name,
+                            actual_g=ing.qty_g,
+                            min_g=0,
+                            max_g=0,
+                            actual_pct=actual_pct,
+                            max_pct=max_pct,
+                            passed=passed,
+                            advice=advice,
+                        )
+                    )
+                else:
+                    # Absolute gram check
+                    min_g = rule.get("min_g", 0.0)
+                    max_g = rule.get("max_g", float("inf"))
+                    passed = min_g <= ing.qty_g <= max_g
+                    results.append(
+                        AnomalyResult(
+                            ingredient=ing.name,
+                            component=chunk.component_name,
+                            recipe=chunk.recipe_name,
+                            actual_g=ing.qty_g,
+                            min_g=min_g,
+                            max_g=max_g,
+                            passed=passed,
+                            advice=rule.get("advice", "") if not passed else "",
+                        )
+                    )
 
     if not results:
         return {

@@ -83,9 +83,11 @@ class AnomalyResult(BaseModel):
     ingredient: str
     component: str
     recipe: str
-    actual_g: float       # actual quantity in grams
-    max_g: float          # threshold maximum in grams
-    min_g: float = 0.0    # threshold minimum in grams
+    actual_g: float
+    max_g: float
+    min_g: float = 0.0
+    actual_pct: Optional[float] = None   # set when rule uses ratio check
+    max_pct: Optional[float] = None      # set when rule uses ratio check
     passed: bool
     advice: str
 

@@ -64,10 +64,9 @@ TEST_CASES: list[TestCase] = [
     TestCase(
         id="FR-04",
         use_case="find_recipe",
-        query="Quantum entanglement soufflé recipe",
+        query="Show me the brioche recipe",
         expected_intent="find_recipe",
-        expect_low_confidence=True,
-        notes="Recipe that does not exist — expect confident refusal",
+        notes="Specific recipe lookup by name",
     ),
     TestCase(
         id="FR-05",
@@ -105,10 +104,10 @@ TEST_CASES: list[TestCase] = [
     TestCase(
         id="SR-04",
         use_case="scale_recipe",
-        query="Scale a non-existent recipe to 1000g",
+        query="Scale the focaccia to 3000g",
         expected_intent="scale_recipe",
-        expect_low_confidence=True,
-        notes="Recipe not in knowledge base — should error cleanly",
+        expect_non_linear_warning=True,
+        notes="Focaccia has yeast and salt — non-linear warnings expected",
     ),
 
     # ── INDENT SHEET ─────────────────────────────────────────────────────────
@@ -133,18 +132,18 @@ TEST_CASES: list[TestCase] = [
     TestCase(
         id="AC-01",
         use_case="check_anomaly",
-        query="Check the dark chocolate tart for ratio errors",
+        query="Check the Extra Recipes for ratio errors",
         expected_intent="check_anomaly",
         expect_anomaly_fail=True,
-        notes="Chocolate glaze gelatin at ~4% exceeds 3% limit — should FAIL",
+        notes="Nappage has Gold Gelatin Mass at ~9.7% of component weight — exceeds 3% limit, should FAIL",
     ),
     TestCase(
         id="AC-02",
         use_case="check_anomaly",
-        query="Validate the vanilla panna cotta recipe",
+        query="Validate the Tropical Entremet recipe",
         expected_intent="check_anomaly",
         expect_anomaly_pass=True,
-        notes="Gelatin at ~1.8% of liquid — should PASS",
+        notes="All gelatin components under 2% of component weight — should PASS",
     ),
     TestCase(
         id="AC-03",

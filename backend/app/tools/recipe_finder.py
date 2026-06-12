@@ -105,6 +105,26 @@ def find_recipes(query: str, restrict_to_name: str | None = None) -> dict:
     results, confidence = retrieve(query, top_k=20)
 
     if not results or confidence < CONFIDENCE_THRESHOLD:
+        # Before giving up, try a direct name-match in the store.
+        # This handles cases where the recipe name is explicit in the query but
+        # hybrid search scores below the threshold (e.g. short/uncommon names).
+        if restrict_to_name:
+            by_recipe = _load_by_recipe()
+            restrict_lower = restrict_to_name.lower()
+            direct_matches = [
+                name for name in by_recipe
+                if restrict_lower in name.lower() or name.lower() in restrict_lower
+            ]
+            if direct_matches:
+                all_chunks = []
+                for name in direct_matches:
+                    all_chunks.extend(by_recipe[name])
+                return {
+                    "chunks": all_chunks,
+                    "matched_recipes": direct_matches,
+                    "confidence": 0.80,
+                    "low_confidence": False,
+                }
         return {
             "chunks": [],
             "matched_recipes": [],
@@ -126,7 +146,7 @@ def find_recipes(query: str, restrict_to_name: str | None = None) -> dict:
 
     restrict_lower = restrict_to_name.lower() if restrict_to_name else None
 
-    _STOP_WORDS = {"and", "&", "the", "a", "an", "of", "with", "for", "in", "de"}
+    _STOP_WORDS = {"and", "&", "the", "a", "an", "of", "with", "for", "in", "de", "me", "my", "its", "some"}
 
     def _name_matches_restriction(name: str) -> bool:
         if restrict_lower is None:

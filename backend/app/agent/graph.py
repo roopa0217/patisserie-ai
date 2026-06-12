@@ -97,6 +97,10 @@ def _classify_intent(query: str) -> str:
             if not any(kw in low for kw in _INTENT_KEYWORDS["check_anomaly"]):
                 return "scale_recipe"
 
+    # "compile/list all ingredients for X" → consolidated ingredient list = build_indent
+    if re.search(r'\b(?:compile|list)\b.{0,60}\bingredients?\b', low):
+        return "build_indent"
+
     # Fast keyword pre-check before LLM call
     for intent, keywords in _INTENT_KEYWORDS.items():
         if any(kw in low for kw in keywords):
@@ -137,7 +141,9 @@ def _extract_recipe_name(query: str) -> str:
         r"(?:to\s+make|make)\s+(?:the\s+)?(.+?)\s+(?:give|recipe|and)\b",
         r"scale\s+(?:the\s+)?(.+?)\s+(?:to|for|by)",
         r"check\s+(?:the\s+)?(.+?)\s+(?:for|recipe)?",
-        r"(?:find|show|give me)\s+(?:the\s+)?(.+?)(?:\s+recipe)?$",
+        r"(?:find|show me|show|give me)\s+(?:the\s+)?(.+?)(?:\s+recipe)?$",
+        # "For Banana Tart can you list / compile / tell me..." — recipe is before the verb
+        r"^(?:for|regarding)\s+(?:the\s+|a\s+)?(.+?)\s+(?:can\s+you|could\s+you|please|tell\s+me|list|compile|show|give|provide|what)\b",
         # "for a/the <component>[?] in <recipe>" — recipe is after "in"
         r"\bfor\s+(?:a\s+|the\s+)?(?:.+?)[\s?]+\bin\b\s+(.+?)(?:\?|$)",
     ]:
@@ -281,6 +287,12 @@ def _extract_indent_params(query: str) -> list[dict]:
     Extract list of {recipe_name, target_yield_g} from an indent query.
     Supports comma-separated recipe names.
     """
+    # "For X / compile ingredients for X" — use recipe name extractor directly
+    if re.search(r'\b(?:compile|list)\b.{0,60}\bingredients?\b', query, re.IGNORECASE):
+        name = _extract_recipe_name(query)
+        if name and not _is_generic_recipe_name(name):
+            return [{"recipe_name": name, "target_yield_g": None}]
+
     # Remove common preamble
     clean = re.sub(
         r"(build|create|make|generate|indent|prep list|ordering sheet|for)\s+",
@@ -600,8 +612,8 @@ async def run_agent_stream(
     elif intent == "find_recipe":
         # Recipes are shown as structured cards — no LLM text needed
         pass
-    elif intent == "scale_recipe" and not (state.get("tool_output") or {}).get("error"):
-        # ScaleTable already rendered as structured result — no LLM summary needed
+    elif intent in ("scale_recipe", "build_indent") and not (state.get("tool_output") or {}).get("error"):
+        # Structured result already rendered — no LLM summary needed
         pass
     else:
         prompt = state.get("final_prompt") or query
