@@ -276,7 +276,6 @@ def main() -> None:
 
     train_rows, val_rows = stratified_split(rows, val_fraction=0.2, seed=42)
 
-    write_csv(DATA_DIR / "dataset.csv", rows)
     write_csv(DATA_DIR / "train.csv", train_rows)
     write_csv(DATA_DIR / "val.csv", val_rows)
 
@@ -285,8 +284,7 @@ def main() -> None:
     for c in CATEGORIES:
         count = sum(1 for r in rows if r["label"] == c)
         print(f"  {c:<15}{count}")
-    print(f"\nWrote {DATA_DIR / 'dataset.csv'}")
-    print(f"Wrote {DATA_DIR / 'train.csv'}")
+    print(f"\nWrote {DATA_DIR / 'train.csv'}")
     print(f"Wrote {DATA_DIR / 'val.csv'}")
 
 
