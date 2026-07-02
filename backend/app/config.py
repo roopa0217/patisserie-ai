@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     nebius_api_key: str
     nebius_base_url: str = "https://api.studio.nebius.com/v1/"
     nebius_llm_model: str = "Qwen/Qwen2.5-72B-Instruct-fast"
+    nebius_intent_model: str = "Qwen/Qwen2.5-72B-Instruct-fast"
     nebius_embedding_model: str = "BAAI/bge-en-icl"
     nebius_embedding_dim: int = 4096
 

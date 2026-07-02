@@ -1,0 +1,71 @@
+text,label
+Check the cinnamon rolls recipe for ratio errors,check_anomaly
+Where's the recipe card for lemon meringue tart?,find_recipe
+What goes into making lemon meringue tart?,find_recipe
+"Something feels off about the opera cake recipe, can you check it?",check_anomaly
+Generate a purchase list for eclairs,build_indent
+Show me a recipe that yields about 10 portions,find_recipe
+Make sourdough starter for 24 people,scale_recipe
+Scale viennoiserie dough to 700g,scale_recipe
+Can you list what's in the sourdough starter?,find_recipe
+I need to order ingredients for eclairs,build_indent
+Why does opera cake dough need to rest before it's baked?,general
+List out the ingredients for macarons,find_recipe
+Pull up the pate sucree recipe,find_recipe
+Can you list what's in the lemon meringue tart?,find_recipe
+Scale the creme patissiere to 10 portions,scale_recipe
+How do you review whether any dough has been kneaded enough?,general
+Do we have a recipe for sourdough loaf?,find_recipe
+Make a prep list for choux pastry production,build_indent
+How do you check whether yeast is still active before using it?,general
+Show me a recipe that yields about 75 portions,find_recipe
+Do we have a recipe for choux pastry?,find_recipe
+Is there a problem with the hydration in the banana tart?,check_anomaly
+Why does kouign-amann dough need to rest before it's baked?,general
+"Build an indent sheet for brioche, babka, and cinnamon rolls",build_indent
+Multiply the babka recipe by 40,scale_recipe
+What's in a classic pain au levain?,find_recipe
+Is there a problem with the hydration in the eclairs?,check_anomaly
+I need to order ingredients for next week's creme patissiere class,build_indent
+Why does macarons dough need to rest before it's baked?,general
+Can I get the recipe for kouign-amann?,find_recipe
+Why do bakers rest brioche dough in the fridge overnight?,general
+Halve the kouign-amann recipe,scale_recipe
+Can I get the recipe for pate a choux?,find_recipe
+Scale the pate a choux to 30 portions,scale_recipe
+Adjust the pain au chocolat recipe for 100 portions,scale_recipe
+Validate the tart tatin ratios,check_anomaly
+What's the science behind why long fermentation improves sourdough flavor?,general
+"Consolidate all ingredients for macarons, eclairs, and palmiers",build_indent
+Halve the opera cake recipe,scale_recipe
+Can you list what's in the financier?,find_recipe
+What's a good hydration ratio for a rustic loaf in general?,general
+Make kouign-amann for 20 people,scale_recipe
+What's in a classic pate sucree?,find_recipe
+Generate a purchase list for creme patissiere,build_indent
+Can you double check the babka recipe for errors?,check_anomaly
+Generate a purchase list for financier,build_indent
+Why do you fold laminated dough instead of just rolling it out flat?,general
+List the top techniques every pastry student should learn first,general
+Validate the measurements in the choux pastry,check_anomaly
+Halve the pate a choux recipe,scale_recipe
+Double the sourdough starter,scale_recipe
+How many servings does a batch of cinnamon rolls produce?,find_recipe
+Scale country loaf to 1000g,scale_recipe
+What causes sourdough starter to turn out dense instead of light?,general
+"Compile all the ingredients needed for brioche, babka, and cinnamon rolls",build_indent
+Can you double check the sourdough starter recipe for errors?,check_anomaly
+"Something feels off about the sourdough loaf recipe, can you check it?",check_anomaly
+What yield should I expect from the pain au levain recipe?,find_recipe
+"Something feels off about the viennoiserie dough recipe, can you check it?",check_anomaly
+Make a prep list for eclairs production,build_indent
+Check if the financier recipe has any anomalies,check_anomaly
+What causes sourdough loaf to turn out dense instead of light?,general
+Halve the macarons recipe,scale_recipe
+What happens chemically if sourdough loaf dough is overmixed?,general
+Adjust the creme patissiere recipe for 100 portions,scale_recipe
+How many portions does the babka recipe make?,find_recipe
+Validate the measurements in the tart tatin,check_anomaly
+"What's the correct internal temperature to check for a baked custard, generally speaking?",general
+Check the sourdough loaf recipe for ratio errors,check_anomaly
+Check if the brioche recipe has any anomalies,check_anomaly

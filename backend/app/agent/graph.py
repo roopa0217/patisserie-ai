@@ -52,6 +52,18 @@ def _llm(streaming: bool = False) -> ChatOpenAI:
     )
 
 
+def _intent_llm() -> ChatOpenAI:
+    """Separate from _llm() so the classifier's model can be swapped
+    (e.g. to a fine-tuned classifier) without affecting response generation."""
+    return ChatOpenAI(
+        model=settings.nebius_intent_model,
+        api_key=settings.nebius_api_key,
+        base_url=settings.nebius_base_url,
+        temperature=0.1,
+        streaming=False,
+    )
+
+
 # ── State ─────────────────────────────────────────────────────────────────────
 
 class AgentState(TypedDict):
@@ -140,7 +152,7 @@ def _classify_intent(query: str) -> str:
                 return intent
 
     # LLM fallback for ambiguous queries
-    llm = _llm(streaming=False)
+    llm = _intent_llm()
     resp = llm.invoke([
         SystemMessage(content=INTENT_SYSTEM),
         HumanMessage(content=query),
