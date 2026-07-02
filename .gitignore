@@ -5,10 +5,6 @@
 # Data — PDFs, embeddings cache, BM25 index (never commit)
 data/
 
-# ...except the small, deterministic, synthetic fine-tune training CSVs
-!finetune/data/
-!finetune/data/*
-
 # Python
 __pycache__/
 *.py[cod]

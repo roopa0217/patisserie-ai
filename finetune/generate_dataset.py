@@ -2,14 +2,18 @@
 Generates a labeled training set for the custom intent-classifier fine-tune
 (Llama-3.2-1B, LoRA + sequence-classification head -- see finetune/train_classifier.ipynb).
 
-This is training data, NOT the eval set: evals/golden_dataset.csv stays held-out
-and untouched. Any row here that exact-matches a golden_dataset.csv row is
-dropped to avoid train/eval leakage.
+This is training data, NOT the eval set: evals/golden_dataset.csv (the source
+of truth) stays held-out and untouched. Any generated row that exact-matches
+a golden_dataset.csv row is dropped to avoid train/eval leakage.
 
 Templates deliberately include the "hard" patterns already documented in
 scripts/eval_intent_classifier.py's FAILURE_CLUSTERS (keyword bleed, double-check
 idiom, portions-vs-lookup, list-ingredients-overreach) so the fine-tuned model
 has to learn the actual distinction instead of keyword-spotting.
+
+Writes train.csv, val.csv, and a fresh copy of golden_dataset.csv into
+finetune/upload_fine_tune/ -- the single folder to grab all 3 files from
+when uploading to Colab (see train_classifier.ipynb, section 3).
 
 Usage:
     python -m finetune.generate_dataset
@@ -19,10 +23,11 @@ from __future__ import annotations
 
 import csv
 import random
+import shutil
 from pathlib import Path
 
 FINETUNE_DIR = Path(__file__).resolve().parent
-DATA_DIR = FINETUNE_DIR / "data"
+DATA_DIR = FINETUNE_DIR / "upload_fine_tune"
 GOLDEN_CSV = FINETUNE_DIR.parent / "evals" / "golden_dataset.csv"
 
 CATEGORIES = ["find_recipe", "scale_recipe", "build_indent", "check_anomaly", "general"]
@@ -306,6 +311,7 @@ def main() -> None:
 
     write_csv(DATA_DIR / "train.csv", train_rows)
     write_csv(DATA_DIR / "val.csv", val_rows)
+    shutil.copy(GOLDEN_CSV, DATA_DIR / "golden_dataset.csv")
 
     print(f"Total rows: {len(rows)} (train {len(train_rows)} / val {len(val_rows)})")
     print("\nPer-category counts (full dataset):")
@@ -314,6 +320,7 @@ def main() -> None:
         print(f"  {c:<15}{count}")
     print(f"\nWrote {DATA_DIR / 'train.csv'}")
     print(f"Wrote {DATA_DIR / 'val.csv'}")
+    print(f"Copied {DATA_DIR / 'golden_dataset.csv'} (from evals/golden_dataset.csv)")
 
 
 if __name__ == "__main__":
