@@ -21,8 +21,14 @@ INTENT_SYSTEM = """Classify the instructor's message into one of these intents:
 - find_recipe: searching for a recipe, asking what is in a recipe, asking for recipe details
 - scale_recipe: scaling a recipe to a different yield, doubling, tripling, portions
 - build_indent: building a prep list, ordering sheet, consolidating ingredients for a production day
-- check_anomaly: checking ratios, validating a recipe, finding errors in a recipe
-- general: any other question about baking science, technique, or general knowledge
+- check_anomaly: the message names a SPECIFIC recipe already in the system and asks to check,
+  validate, or find errors in THAT recipe's measurements against baking thresholds
+- general: any other question about baking science, technique, or general knowledge -- including
+  questions about what a correct/good/ideal ratio or method is in general (not about a specific
+  named recipe to validate), even if words like "ratio", "correct", or "check" appear
+
+If the question asks what a correct/good ratio or technique IS (conceptual understanding) rather
+than asking to VALIDATE a specific named recipe already in the system, classify it as general.
 
 Respond with ONLY the intent label, nothing else.
 """

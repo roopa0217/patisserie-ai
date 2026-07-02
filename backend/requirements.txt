@@ -24,3 +24,8 @@ python-dotenv==1.0.1
 httpx==0.27.2
 aiofiles==24.1.0
 numpy==1.26.4
+
+# Evals
+langsmith==0.1.147
+openpyxl==3.1.5
+python-docx==1.2.0

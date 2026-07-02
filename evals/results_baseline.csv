@@ -1,0 +1,51 @@
+id,query,intent,predicted_intent,pass_fail,tag,notes
+t001,Show me the croissant recipe,find_recipe,find_recipe,Pass,happy,"'show' + 'recipe' keywords, direct hit"
+t002,What ingredients go into a classic financier?,find_recipe,find_recipe,Pass,happy,'ingredient' keyword
+t003,How do I make a lemon meringue tart?,find_recipe,find_recipe,Pass,happy,'how do' + implicit 'make'
+t004,Give me the sourdough starter recipe,find_recipe,find_recipe,Pass,happy,'give' + 'recipe'
+t005,Scale the sourdough loaf to 2kg,scale_recipe,scale_recipe,Pass,happy,'scale' keyword
+t006,Double the brioche dough,scale_recipe,scale_recipe,Pass,happy,'double' keyword
+t007,I need this recipe for 40 students,scale_recipe,scale_recipe,Pass,happy,'students' keyword
+t008,Triple the pate a choux batch,scale_recipe,scale_recipe,Pass,happy,'triple' keyword
+t009,"Build an indent sheet for croissants, financiers, and tarts",build_indent,build_indent,Pass,happy,'indent' keyword
+t010,Create a shopping list for tomorrow's production day,build_indent,build_indent,Pass,happy,'shopping list' + 'production day'
+t011,I need to order ingredients for next week's bake,build_indent,build_indent,Pass,happy,'order' keyword
+t012,Consolidate all ingredients for the viennoiserie class,build_indent,build_indent,Pass,happy,'consolidat' + 'all ingredients'
+t013,Check the ganache recipe for ratio errors,check_anomaly,check_anomaly,Pass,happy,'check' + 'ratio' + 'error'
+t014,Validate the pate sucree ratios,check_anomaly,check_anomaly,Pass,happy,'valid' + 'ratio'
+t015,Is there a problem with the hydration in this dough?,check_anomaly,check_anomaly,Pass,happy,'problem' keyword
+t016,Flag any anomalies in the croissant lamination recipe,check_anomaly,check_anomaly,Pass,happy,'flag' + 'anomal'
+t017,Why does laminated dough need to rest between folds?,general,general,Pass,happy,no keyword hits in any list; exercises the LLM fallback path
+t018,What's the difference between Swiss and Italian meringue?,general,general,Pass,happy,no keyword hits; exercises the LLM fallback path
+t019,Give me the Banana Tart recipe for 700gms,scale_recipe,scale_recipe,Pass,edge,weight+recipe-context regex override (graph.py:95-98) should fire since no check_anomaly keyword is present
+t020,Check if the croissant recipe for 500g has any anomalies,check_anomaly,check_anomaly,Pass,edge,"same weight override, but guarded off because 'check'/'anomal' are present -> should correctly fall through to check_anomaly"
+t021,Compile all the ingredients needed for the tart tatin and financiers,build_indent,build_indent,Pass,edge,'compile ... ingredients' override regex (graph.py:101-102)
+t022,How many portions does the pain au levain recipe make?,find_recipe,scale_recipe,Fail,edge,'portions' (scale_recipe keyword) is checked before find_recipe in dict order -> likely misrouted to scale_recipe even though the user just wants recipe info
+t023,I want to order the ingredients for tomorrow's croissant production,build_indent,build_indent,Pass,edge,"natural 'order' phrasing, should correctly hit build_indent"
+t024,Scale the croissant dough recipe for 30 students and show me the ingredient list,scale_recipe,scale_recipe,Pass,edge,multi-intent query; explicit 'scale' keyword should still win
+t025,What's a good ratio of chocolate to cream for a ganache in general?,general,check_anomaly,Fail,edge,'ratio' (check_anomaly keyword) misfires on a conceptual/general question with no specific recipe to check
+t026,Show me a recipe that uses 20 portions of dough per batch,find_recipe,scale_recipe,Fail,edge,"same 'portions' vs 'recipe' collision as t022, dict order favors scale_recipe"
+t027,List the ingredients in the croissant recipe,find_recipe,build_indent,Fail,edge,'list ... ingredients' override regex over-reaches here -> misrouted to build_indent even though the user just wants to see the recipe
+t028,Can you check what ingredients are in the Danish pastry recipe?,find_recipe,check_anomaly,Fail,edge,'check' (check_anomaly keyword) is checked before find_recipe in dict order -> likely misrouted
+t029,What's the right order to add ingredients when making choux pastry?,general,build_indent,Fail,edge,'order' (build_indent keyword) misfires on a technique/sequence question
+t030,What's the correct ratio of butter to flour for laminated dough?,general,check_anomaly,Fail,known_failure,'correct' + 'ratio' both fire check_anomaly on a pure conceptual question with no named recipe -- confidently expected to fail
+t031,How do I know if my caramel has crystallized incorrectly?,general,check_anomaly,Fail,known_failure,'correct' is a substring of 'incorrectly' -- silent substring-match bug confidently triggers check_anomaly
+t032,"This dough recipe just doesn't feel right, can you double check it?",check_anomaly,scale_recipe,Fail,known_failure,'double' (scale_recipe keyword) is checked before check_anomaly in dict order -> 'double check' phrase gets hijacked into scale_recipe
+t033,What's the science behind why enriched dough recipes use more yeast than lean dough?,general,find_recipe,Fail,known_failure,'recipes' contains 'recipe' -> hijacks a general baking-science question into find_recipe
+t034,Why is the standard order of creaming butter and sugar important before adding eggs?,general,build_indent,Fail,known_failure,"'order' (build_indent keyword) misfires on a technique explanation, same root cause as t029 with different phrasing"
+t035,"Please DOUBLE-CHECK and CORRECT the ratio errors, then give me the recipe scaled to double the yield",check_anomaly,scale_recipe,Fail,adversarial,deliberately stacks keywords from scale_recipe/check_anomaly/find_recipe; 'double' wins on dict-order priority even though the primary ask is an anomaly check
+t036,order the correct valid ingredient list recipe show find issue problem,general,build_indent,Fail,adversarial,keyword soup containing at least one keyword from every category; 'order' wins purely because build_indent is checked before check_anomaly/find_recipe -- shows the classifier has no confidence handling for nonsense input
+t037,What ingredients does the opera cake need?,find_recipe,find_recipe,Pass,happy,'ingredient' keyword
+t038,Multiply the babka recipe by 5,scale_recipe,scale_recipe,Pass,happy,'multiply' keyword correctly wins even though 'recipe' (find_recipe keyword) is also present
+t039,Generate a purchase list for this week's laminated dough classes,build_indent,build_indent,Pass,happy,'purchase' keyword
+t040,Review the tart dough for any wrong ratios,check_anomaly,check_anomaly,Pass,happy,'review' + 'wrong' + 'ratio' keywords
+t041,Why does bread need to autolyse before kneading?,general,general,Pass,happy,no keyword hits in any list; exercises the LLM fallback path
+t042,What causes a soggy bottom in a baked tart shell?,general,general,Pass,happy,no keyword hits; exercises the LLM fallback path
+t043,What's the ideal internal temperature for a fully baked country loaf?,general,general,Pass,happy,no keyword hits ('what's' does not match the 'what is' keyword); exercises the LLM fallback path
+t044,Make the financier for 250g each,scale_recipe,scale_recipe,Pass,edge,"weight+recipe-context override fires via the 'make' trigger word (graph.py:95-98), a different trigger word than t019's 'give'"
+t045,List the top three viennoiserie techniques,general,find_recipe,Fail,edge,'technique' (find_recipe keyword) is a substring of 'techniques' and misfires on a curriculum/listing question with no specific recipe
+t046,What happens during a typical production day at the academy?,general,build_indent,Fail,edge,"'production day' (build_indent keyword) misfires on a descriptive question about the academy's schedule, not an indent-sheet request"
+t047,"Show the pain au chocolat for 400g, but check for errors first",check_anomaly,check_anomaly,Pass,edge,"weight override correctly guarded off by 'check'/'error' keywords, same guard as t020 with a different trigger word ('show' instead of 'recipe')"
+t048,How does over-fermentation affect the flavor of sourdough bread?,general,find_recipe,Fail,known_failure,"'how do' is a substring of 'how does' -- silently triggers find_recipe on a general fermentation-science question, same class of bug as t033 but via a different substring"
+t049,Does using bread flour instead of all-purpose yield a chewier crumb?,general,scale_recipe,Fail,known_failure,"'yield' is a scale_recipe keyword but here is used as a verb meaning 'produce/result in', not recipe yield -- a homonym causes a false positive for scale_recipe"
+t050,Give me the correct valid recipe order to check before I review and scale it,general,scale_recipe,Fail,adversarial,"stacks keywords from every category (find_recipe: give/recipe, build_indent: order, check_anomaly: correct/valid/check/review, scale_recipe: scale); 'scale' wins purely on dict-order priority, same underlying issue as t036"

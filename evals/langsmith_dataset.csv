@@ -1,0 +1,51 @@
+query,intent,id
+Show me the croissant recipe,find_recipe,t001
+What ingredients go into a classic financier?,find_recipe,t002
+How do I make a lemon meringue tart?,find_recipe,t003
+Give me the sourdough starter recipe,find_recipe,t004
+Scale the sourdough loaf to 2kg,scale_recipe,t005
+Double the brioche dough,scale_recipe,t006
+I need this recipe for 40 students,scale_recipe,t007
+Triple the pate a choux batch,scale_recipe,t008
+"Build an indent sheet for croissants, financiers, and tarts",build_indent,t009
+Create a shopping list for tomorrow's production day,build_indent,t010
+I need to order ingredients for next week's bake,build_indent,t011
+Consolidate all ingredients for the viennoiserie class,build_indent,t012
+Check the ganache recipe for ratio errors,check_anomaly,t013
+Validate the pate sucree ratios,check_anomaly,t014
+Is there a problem with the hydration in this dough?,check_anomaly,t015
+Flag any anomalies in the croissant lamination recipe,check_anomaly,t016
+Why does laminated dough need to rest between folds?,general,t017
+What's the difference between Swiss and Italian meringue?,general,t018
+Give me the Banana Tart recipe for 700gms,scale_recipe,t019
+Check if the croissant recipe for 500g has any anomalies,check_anomaly,t020
+Compile all the ingredients needed for the tart tatin and financiers,build_indent,t021
+How many portions does the pain au levain recipe make?,find_recipe,t022
+I want to order the ingredients for tomorrow's croissant production,build_indent,t023
+Scale the croissant dough recipe for 30 students and show me the ingredient list,scale_recipe,t024
+What's a good ratio of chocolate to cream for a ganache in general?,general,t025
+Show me a recipe that uses 20 portions of dough per batch,find_recipe,t026
+List the ingredients in the croissant recipe,find_recipe,t027
+Can you check what ingredients are in the Danish pastry recipe?,find_recipe,t028
+What's the right order to add ingredients when making choux pastry?,general,t029
+What's the correct ratio of butter to flour for laminated dough?,general,t030
+How do I know if my caramel has crystallized incorrectly?,general,t031
+"This dough recipe just doesn't feel right, can you double check it?",check_anomaly,t032
+What's the science behind why enriched dough recipes use more yeast than lean dough?,general,t033
+Why is the standard order of creaming butter and sugar important before adding eggs?,general,t034
+"Please DOUBLE-CHECK and CORRECT the ratio errors, then give me the recipe scaled to double the yield",check_anomaly,t035
+order the correct valid ingredient list recipe show find issue problem,general,t036
+What ingredients does the opera cake need?,find_recipe,t037
+Multiply the babka recipe by 5,scale_recipe,t038
+Generate a purchase list for this week's laminated dough classes,build_indent,t039
+Review the tart dough for any wrong ratios,check_anomaly,t040
+Why does bread need to autolyse before kneading?,general,t041
+What causes a soggy bottom in a baked tart shell?,general,t042
+What's the ideal internal temperature for a fully baked country loaf?,general,t043
+Make the financier for 250g each,scale_recipe,t044
+List the top three viennoiserie techniques,general,t045
+What happens during a typical production day at the academy?,general,t046
+"Show the pain au chocolat for 400g, but check for errors first",check_anomaly,t047
+How does over-fermentation affect the flavor of sourdough bread?,general,t048
+Does using bread flour instead of all-purpose yield a chewier crumb?,general,t049
+Give me the correct valid recipe order to check before I review and scale it,general,t050

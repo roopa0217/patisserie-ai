@@ -86,6 +86,23 @@ _INTENT_KEYWORDS = {
     ],
 }
 
+# Keywords that are prone to bleeding into general baking-science questions
+# ("what's the correct ratio...", "how does X affect Y") rather than the
+# action they normally signal. Only trusted when the query ISN'T phrased as
+# an informational question (see _is_general_question below).
+_WEAK_KEYWORDS = {
+    "check_anomaly": {"ratio", "correct", "check", "review"},
+    "build_indent": {"order", "production day"},
+    "find_recipe": {"recipe", "technique", "how do"},
+    "scale_recipe": {"yield"},
+}
+
+_QUESTION_START = re.compile(r"^(what|why|how|does|is|are|can|could|would)\b")
+
+
+def _is_general_question(low: str) -> bool:
+    return bool(_QUESTION_START.match(low.strip()))
+
 
 def _classify_intent(query: str) -> str:
     low = query.lower()
@@ -97,14 +114,30 @@ def _classify_intent(query: str) -> str:
             if not any(kw in low for kw in _INTENT_KEYWORDS["check_anomaly"]):
                 return "scale_recipe"
 
-    # "compile/list all ingredients for X" → consolidated ingredient list = build_indent
-    if re.search(r'\b(?:compile|list)\b.{0,60}\bingredients?\b', low):
+    # "compile ingredients for X" / "list ALL ingredients for X" → consolidated
+    # ingredient list = build_indent. Requires "compile", or "list" together with
+    # "all", so a simple recipe lookup ("list the ingredients in X recipe") falls
+    # through to find_recipe instead of being treated as an indent-sheet request.
+    if re.search(r'\bcompile\b.{0,60}\bingredients?\b', low):
+        return "build_indent"
+    if re.search(r'\blist\b.{0,60}\ball\b.{0,60}\bingredients?\b', low):
         return "build_indent"
 
-    # Fast keyword pre-check before LLM call
+    # "double check"/"double-check" is an idiom about verification, not a
+    # scaling instruction -- don't let the literal word "double" claim it.
+    is_double_check_idiom = bool(re.search(r"\bdouble[\s-]?check", low))
+
+    # Fast keyword pre-check before LLM call. Weak/ambiguous keywords are
+    # skipped on general-question phrasing so they don't hijack baking-science
+    # questions -- those queries fall through to the LLM fallback instead.
+    is_question = _is_general_question(low)
     for intent, keywords in _INTENT_KEYWORDS.items():
-        if any(kw in low for kw in keywords):
-            return intent
+        weak = _WEAK_KEYWORDS.get(intent, set())
+        for kw in keywords:
+            if kw == "double" and is_double_check_idiom:
+                continue
+            if kw in low and not (kw in weak and is_question):
+                return intent
 
     # LLM fallback for ambiguous queries
     llm = _llm(streaming=False)
