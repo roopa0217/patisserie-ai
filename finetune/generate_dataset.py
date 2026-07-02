@@ -103,6 +103,21 @@ SCALE_RECIPE_MULTI_CLAUSE = [
     "Triple the {recipe} batch and show me what ingredients I'll need",
     "Multiply the {recipe} by {n} and give me the full ingredient list",
     "Adjust the {recipe} for {portions} portions and show the recipe details",
+    "Scale the {recipe} to {portions} portions and show me what's needed",
+    "Double the {recipe} and list the ingredients too",
+    "Triple the {recipe} recipe, then show me the ingredient list",
+    "Scale {recipe} for {n} students, and give me the ingredients",
+]
+
+# scale_recipe with a per-unit weight ("250g each") rather than a total batch
+# weight -- targets t044 ("Make the financier for 250g each"), a variant our
+# weight-lookup templates above didn't cover (they only had a bare "{weight}g",
+# not "{weight}g each").
+SCALE_RECIPE_PER_UNIT_TEMPLATES = [
+    "Make the {recipe} for {weight}g each",
+    "Give me the {recipe} recipe for {weight}g each",
+    "Scale the {recipe} to {weight}g each",
+    "I need the {recipe} made at {weight}g each",
 ]
 
 BUILD_INDENT_TEMPLATES = [
@@ -115,6 +130,17 @@ BUILD_INDENT_TEMPLATES = [
     "Put together an ordering sheet for {recipe}",
     "Make a prep list for {recipe} production",
     "I need to order ingredients for next week's {recipe} class",
+]
+
+# build_indent phrased around a generic production event rather than a named
+# recipe -- targets t011 ("I need to order ingredients for next week's bake"),
+# which our recipe-name-only templates above didn't cover.
+BUILD_INDENT_GENERIC_TEMPLATES = [
+    "I need to order ingredients for {time_ref} {production_noun}",
+    "Build an indent sheet for {time_ref} {production_noun}",
+    "Create a shopping list for {time_ref} {production_noun}",
+    "Put together a prep list for {time_ref} {production_noun}",
+    "Order the ingredients for {time_ref} {production_noun}",
 ]
 
 CHECK_ANOMALY_TEMPLATES = [
@@ -214,6 +240,8 @@ FIND_RECIPE_LIST_INGREDIENTS = [
 PORTIONS = [10, 12, 20, 24, 30, 40, 50, 60, 75, 100]
 WEIGHTS = [250, 400, 500, 700, 1000, 1500, 2000]
 MULTIPLIERS = [2, 3, 4, 5]
+TIME_REFS = ["next week's", "tomorrow's", "this week's", "next month's", "Monday's", "today's"]
+PRODUCTION_NOUNS = ["bake", "production", "batch", "class", "shift", "session"]
 
 
 def _fill(template: str, rng: random.Random) -> str:
@@ -223,6 +251,8 @@ def _fill(template: str, rng: random.Random) -> str:
         n=rng.choice(PORTIONS),
         portions=rng.choice(PORTIONS),
         weight=rng.choice(WEIGHTS),
+        time_ref=rng.choice(TIME_REFS),
+        production_noun=rng.choice(PRODUCTION_NOUNS),
     )
 
 
@@ -245,15 +275,17 @@ def generate_rows(seed: int = 42) -> list[dict]:
     add(FIND_RECIPE_PORTIONS, "find_recipe", per_template=5)
     add(FIND_RECIPE_LIST_INGREDIENTS, "find_recipe", per_template=5)
 
-    add(SCALE_RECIPE_TEMPLATES, "scale_recipe", per_template=5)
-    add(SCALE_RECIPE_WEIGHT_LOOKUP_STYLE, "scale_recipe", per_template=4)
-    add(SCALE_RECIPE_MULTI_CLAUSE, "scale_recipe", per_template=4)
+    add(SCALE_RECIPE_TEMPLATES, "scale_recipe", per_template=4)
+    add(SCALE_RECIPE_WEIGHT_LOOKUP_STYLE, "scale_recipe", per_template=3)
+    add(SCALE_RECIPE_MULTI_CLAUSE, "scale_recipe", per_template=3)
+    add(SCALE_RECIPE_PER_UNIT_TEMPLATES, "scale_recipe", per_template=3)
 
-    add(BUILD_INDENT_TEMPLATES, "build_indent", per_template=8)
+    add(BUILD_INDENT_TEMPLATES, "build_indent", per_template=7)
+    add(BUILD_INDENT_GENERIC_TEMPLATES, "build_indent", per_template=6)
 
     add(CHECK_ANOMALY_TEMPLATES, "check_anomaly", per_template=8)
 
-    add(GENERAL_RECIPE_SCIENCE_TEMPLATES, "general", per_template=6)
+    add(GENERAL_RECIPE_SCIENCE_TEMPLATES, "general", per_template=7)
     for text in GENERAL_PLAIN + GENERAL_KEYWORD_BLEED + GENERAL_DOUBLE_CHECK:
         rows.append({"text": text, "label": "general"})
 
