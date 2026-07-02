@@ -1,282 +1,304 @@
 text,label
-Why does pain au chocolat dough need to rest before it's baked?,general
-Can you double check the lemon meringue tart recipe for errors?,check_anomaly
-I need to order ingredients for sourdough loaf,build_indent
-Why do bakers rest ganache dough in the fridge overnight?,general
-"Consolidate all ingredients for croissants, financiers, and tarts",build_indent
+"Build an indent sheet for brioche, babka, and cinnamon rolls",build_indent
+Give me the Danish pastry recipe,find_recipe
+Triple the sourdough loaf batch,scale_recipe
+I need to order ingredients for next week's sourdough starter class,build_indent
+Generate a purchase list for financier,build_indent
 Consolidate all ingredients for the tart tatin and financiers,build_indent
-Why do some pastry doughs need to stay cold while you work with them?,general
-I need to order ingredients for next week's opera cake class,build_indent
-Make a prep list for pain au chocolat production,build_indent
-Show me the choux pastry recipe,find_recipe
-Adjust the opera cake recipe for 12 portions,scale_recipe
-Show me a recipe that yields about 50 portions,find_recipe
-I need to order ingredients for next week's brioche class,build_indent
-What causes macarons to develop feet during baking?,general
-Build an indent sheet for the tart tatin and financiers,build_indent
-What's in a classic brioche?,find_recipe
-Why does Danish pastry dough need to rest before it's baked?,general
-Quadruple the choux pastry,scale_recipe
-Scale creme patissiere to 400g,scale_recipe
-Do we have a recipe for puff pastry?,find_recipe
-What ingredients go into a sourdough loaf?,find_recipe
-I need this recipe for 24 students,scale_recipe
-Build an indent sheet for the viennoiserie class,build_indent
-I need this recipe for 20 students,scale_recipe
-Put together an ordering sheet for ganache,build_indent
-Make croissant for 24 people,scale_recipe
-Why do some tart shells get blind-baked before filling?,general
-Put together an ordering sheet for banana tart,build_indent
-I need the ingredient list for pain au levain,find_recipe
-Multiply the opera cake recipe by 75,scale_recipe
-Why is temperature control especially important when making financier?,general
-Check the opera cake recipe for ratio errors,check_anomaly
-Quadruple the opera cake,scale_recipe
-Double the babka,scale_recipe
-Validate the measurements in the puff pastry,check_anomaly
-Scale pain au chocolat to 400g,scale_recipe
-I need the ingredient list for croissant,find_recipe
-Check the eclairs recipe for ratio errors,check_anomaly
-Where's the recipe card for pate a choux?,find_recipe
-Multiply the ganache recipe by 20,scale_recipe
-What ingredients go into a viennoiserie dough?,find_recipe
-How many servings does a batch of pain au chocolat produce?,find_recipe
-What happens chemically if kouign-amann dough is overmixed?,general
-Show me a recipe that yields about 20 portions,find_recipe
-Why is temperature control especially important when making kouign-amann?,general
-Can you double check the macarons recipe for errors?,check_anomaly
-Review the Danish pastry for any wrong ratios,check_anomaly
-What's a typical ratio of sugar to egg whites in a good meringue?,general
-"Something feels off about the eclairs recipe, can you check it?",check_anomaly
-Triple the macarons batch,scale_recipe
-Do we have a recipe for brioche?,find_recipe
-What order should a beginner learn pastry techniques in?,general
-What's the difference between baking soda and baking powder chemically?,general
-"Compile all the ingredients needed for croissants, financiers, and tarts",build_indent
-Adjust the babka recipe for 50 portions,scale_recipe
-Validate the puff pastry ratios,check_anomaly
-I need to order ingredients for pain au chocolat,build_indent
-I need this recipe for 60 students,scale_recipe
-Can I get the recipe for macarons?,find_recipe
-Generate a purchase list for choux pastry,build_indent
-Validate the country loaf ratios,check_anomaly
-How do I make cinnamon rolls?,find_recipe
-Adjust the financier recipe for 50 portions,scale_recipe
-Check the choux pastry recipe for ratio errors,check_anomaly
-Put together an ordering sheet for palmiers,build_indent
-Is there a problem with the hydration in the viennoiserie dough?,check_anomaly
-Make sourdough loaf for 20 people,scale_recipe
-"Compile all the ingredients needed for macarons, eclairs, and palmiers",build_indent
-Compile all the ingredients needed for the viennoiserie class,build_indent
-Is there a problem with the hydration in the tart tatin?,check_anomaly
-Put together an ordering sheet for pain au levain,build_indent
-How many portions does the ganache recipe make?,find_recipe
-I need the ingredient list for ganache,find_recipe
-Pull up the kouign-amann recipe,find_recipe
-Give me the financier recipe,find_recipe
-Check the pate a choux recipe for ratio errors,check_anomaly
-Double the financier,scale_recipe
-List out the ingredients for palmiers,find_recipe
-I need to order ingredients for pate sucree,build_indent
-What yield should I expect from the lemon meringue tart recipe?,find_recipe
-What causes choux pastry to turn out dense instead of light?,general
-Why is temperature control especially important when making macarons?,general
-Scale the sourdough starter to 24 portions,scale_recipe
-Check the lemon meringue tart recipe for ratio errors,check_anomaly
-Why does egg wash give pastry a shiny golden crust?,general
-What goes into making palmiers?,find_recipe
-What's the purpose of degassing dough during bulk fermentation?,general
-I need to order ingredients for next week's tart tatin class,build_indent
-Make a prep list for cinnamon rolls production,build_indent
-Flag any anomalies in the ganache recipe,check_anomaly
-Review the sourdough starter for any wrong ratios,check_anomaly
-Check if the puff pastry recipe has any anomalies,check_anomaly
-Why do bakers rest Danish pastry dough in the fridge overnight?,general
-Multiply the macarons recipe by 40,scale_recipe
-Multiply the babka recipe by 24,scale_recipe
-Scale eclairs to 500g,scale_recipe
-Triple the choux pastry batch,scale_recipe
-Do we have a recipe for eclairs?,find_recipe
-Flag any anomalies in the babka recipe,check_anomaly
-How many servings does a batch of country loaf produce?,find_recipe
-Can you double check the kouign-amann recipe for errors?,check_anomaly
-Why is checking dough temperature important during mixing?,general
-What role does gluten development play in a laminated pastry?,general
-Multiply the country loaf recipe by 60,scale_recipe
-Multiply the eclairs recipe by 10,scale_recipe
-What's the correct way to laminate butter into dough in general?,general
-Flag any anomalies in the pain au chocolat recipe,check_anomaly
-What yield should I expect from the Danish pastry recipe?,find_recipe
-Scale the sourdough starter to 40 portions,scale_recipe
-Triple the opera cake batch,scale_recipe
-Review the palmiers for any wrong ratios,check_anomaly
-I need this recipe for 75 students,scale_recipe
-Is there a problem with the hydration in the brioche?,check_anomaly
+Check the financier recipe for ratio errors,check_anomaly
+Multiply the pain au levain by 20 and give me the full ingredient list,scale_recipe
 Where's the recipe card for viennoiserie dough?,find_recipe
-How do I make pate sucree?,find_recipe
-Why does croissant dough need to rest before it's baked?,general
-Flag any anomalies in the kouign-amann recipe,check_anomaly
-Generate a purchase list for tart tatin,build_indent
-Check if the Danish pastry recipe has any anomalies,check_anomaly
-Can you double check the viennoiserie dough recipe for errors?,check_anomaly
-"Let me double check, is bread flour the same thing as strong flour?",general
-What's the difference between Dutch-process and natural cocoa powder?,general
-Review the country loaf for any wrong ratios,check_anomaly
-Why is temperature control especially important when making puff pastry?,general
-Validate the palmiers ratios,check_anomaly
-I need this recipe for 100 students,scale_recipe
-Quadruple the ganache,scale_recipe
 Can you list what's in the sourdough loaf?,find_recipe
-Make a prep list for palmiers production,build_indent
-"Build an indent sheet for macarons, eclairs, and palmiers",build_indent
-I need to order ingredients for tart tatin,build_indent
-Is there a problem with the hydration in the palmiers?,check_anomaly
-Validate the macarons ratios,check_anomaly
-List the ingredients in the pate sucree recipe,find_recipe
-I need to order ingredients for next week's eclairs class,build_indent
-I should double check -- does baking soda expire over time?,general
-Validate the measurements in the brioche,check_anomaly
-Can you double check why caramel tends to seize up?,general
-List the ingredients in the banana tart recipe,find_recipe
-List the ingredients in the creme patissiere recipe,find_recipe
-Make pate sucree for 20 people,scale_recipe
-Why is temperature control especially important when making sourdough starter?,general
-Flag any anomalies in the palmiers recipe,check_anomaly
-I need to order ingredients for palmiers,build_indent
-What causes puff pastry to turn out dense instead of light?,general
+How does over-proofing affect the texture of an enriched dough?,general
+Show me a recipe that yields about 100 portions,find_recipe
+Halve the croissant recipe,scale_recipe
+Give me the pate sucree recipe for 1000g,scale_recipe
 Double the creme patissiere,scale_recipe
-I need this recipe for 30 students,scale_recipe
-Validate the babka ratios,check_anomaly
-Why is temperature control especially important when making choux pastry?,general
-"Something feels off about the brioche recipe, can you check it?",check_anomaly
-I need to order ingredients for next week's pain au chocolat class,build_indent
-Is there a problem with the hydration in the pain au levain?,check_anomaly
-Can I get the recipe for Danish pastry?,find_recipe
-What goes into making ganache?,find_recipe
-Pull up the sourdough loaf recipe,find_recipe
-Double check for me -- do you need to sift powdered sugar before using it?,general
+Make a prep list for opera cake production,build_indent
+Make cinnamon rolls for 24 people,scale_recipe
+Scale the tart tatin for 30 portions and list what's needed,scale_recipe
+Generate a purchase list for pain au levain,build_indent
+Triple the kouign-amann batch,scale_recipe
+Is there a problem with the hydration in the babka?,check_anomaly
+Adjust the ganache for 60 portions and show the recipe details,scale_recipe
+List the ingredients in the banana tart recipe,find_recipe
+Why is temperature control especially important when making kouign-amann?,general
+Why does chocolate seize when water is added to it?,general
+List out the ingredients for tart tatin,find_recipe
+Make a prep list for viennoiserie dough production,build_indent
+What goes into making sourdough loaf?,find_recipe
+Flag any anomalies in the brioche recipe,check_anomaly
+Why does brioche dough need to rest before it's baked?,general
+Quadruple the viennoiserie dough,scale_recipe
+List out the ingredients for palmiers,find_recipe
+Validate the measurements in the sourdough starter,check_anomaly
+Triple the sourdough starter batch and show me what ingredients I'll need,scale_recipe
+"Build an indent sheet for macarons, eclairs, and palmiers",build_indent
+Why do bakers rest opera cake dough in the fridge overnight?,general
+Why do enriched doughs take longer to proof than lean doughs?,general
+Multiply the choux pastry recipe by 24,scale_recipe
+I need the pain au chocolat recipe for 1500g,scale_recipe
+How do I make choux pastry?,find_recipe
+Make the banana tart for 500g,scale_recipe
+I need the ingredient list for ganache,find_recipe
+Where's the recipe card for brioche?,find_recipe
+Check the choux pastry recipe for ratio errors,check_anomaly
+Why do bakers rest choux pastry dough in the fridge overnight?,general
+Show me a recipe that yields about 20 portions,find_recipe
+What's the right order to add wet and dry ingredients when mixing cake batter?,general
+What does a typical production day look like at a pastry school?,general
+What happens chemically if pain au levain dough is overmixed?,general
+"Something feels off about the creme patissiere recipe, can you check it?",check_anomaly
+What causes kouign-amann to turn out dense instead of light?,general
+Show me a recipe that yields about 75 portions,find_recipe
+What causes sourdough starter to turn out dense instead of light?,general
+I need this recipe for 75 students,scale_recipe
+I need the ingredient list for sourdough starter,find_recipe
 Make a prep list for lemon meringue tart production,build_indent
-I need to order ingredients for next week's banana tart class,build_indent
+Do we have a recipe for brioche?,find_recipe
+What goes into making ganache?,find_recipe
+What ingredients go into a pate sucree?,find_recipe
+I need the opera cake recipe for 1000g,scale_recipe
+Generate a purchase list for kouign-amann,build_indent
+Scale the Danish pastry for 10 portions and list what's needed,scale_recipe
+I need to order ingredients for croissant,build_indent
+Can you double check the country loaf recipe for errors?,check_anomaly
+What yield should I expect from the pate sucree recipe?,find_recipe
+What happens chemically if cinnamon rolls dough is overmixed?,general
+Is there a problem with the hydration in the viennoiserie dough?,check_anomaly
+Scale the sourdough starter recipe for 40 students and show me the ingredients,scale_recipe
+Where's the recipe card for lemon meringue tart?,find_recipe
+What's the smoke point difference between butter and clarified butter?,general
+Review the ganache for any wrong ratios,check_anomaly
+List out the ingredients for kouign-amann,find_recipe
+Scale the creme patissiere to 10 portions,scale_recipe
+List the ingredients in the cinnamon rolls recipe,find_recipe
+Can you double check the pain au chocolat recipe for errors?,check_anomaly
+Give me the sourdough loaf recipe for 1500g,scale_recipe
+Why do bakers rest macarons dough in the fridge overnight?,general
+I'll need the pain au levain recipe made for 700g,scale_recipe
+How do I make opera cake?,find_recipe
+Adjust the babka recipe for 50 portions,scale_recipe
+I need the ingredient list for croissant,find_recipe
+Triple the palmiers batch and show me what ingredients I'll need,scale_recipe
+Check if the brioche recipe has any anomalies,check_anomaly
+Validate the measurements in the puff pastry,check_anomaly
+Generate a purchase list for eclairs,build_indent
+Make a prep list for tart tatin production,build_indent
+"Let me double check, is bread flour the same thing as strong flour?",general
+Double the macarons recipe and give me the updated ingredient list,scale_recipe
+Halve the banana tart recipe,scale_recipe
 I need to order ingredients for choux pastry,build_indent
-Why does creaming butter and sugar together add air to a batter?,general
-Why do bakers rest creme patissiere dough in the fridge overnight?,general
+Review the cinnamon rolls for any wrong ratios,check_anomaly
+How do I make cinnamon rolls?,find_recipe
+Double the sourdough starter,scale_recipe
+What's the purpose of scoring bread dough before it goes in the oven?,general
+Put together an ordering sheet for opera cake,build_indent
+Can you list what's in the lemon meringue tart?,find_recipe
+Why do bakers rest pate sucree dough in the fridge overnight?,general
+Show me the kouign-amann recipe for 2000g,scale_recipe
+Why does tart tatin dough need to rest before it's baked?,general
+How many servings does a batch of country loaf produce?,find_recipe
+I need this recipe for 100 students,scale_recipe
+Scale viennoiserie dough to 500g,scale_recipe
+Can I get the recipe for macarons?,find_recipe
+Adjust the viennoiserie dough for 30 portions and show the recipe details,scale_recipe
+Double the pain au levain recipe and give me the updated ingredient list,scale_recipe
+Put together an ordering sheet for cinnamon rolls,build_indent
+Check the banana tart recipe for ratio errors,check_anomaly
+I need to order ingredients for next week's pain au chocolat class,build_indent
+What causes puff pastry to turn out dense instead of light?,general
+"Consolidate all ingredients for brioche, babka, and cinnamon rolls",build_indent
+Can you double check the Danish pastry recipe for errors?,check_anomaly
+What happens chemically if pate sucree dough is overmixed?,general
+Make a prep list for sourdough starter production,build_indent
+Flag any anomalies in the puff pastry recipe,check_anomaly
+Why is checking dough temperature important during mixing?,general
+What goes into making lemon meringue tart?,find_recipe
+Put together an ordering sheet for choux pastry,build_indent
+I need to order ingredients for palmiers,build_indent
+Multiply the opera cake recipe by 20,scale_recipe
+Put together an ordering sheet for tart tatin,build_indent
+Check if the opera cake recipe has any anomalies,check_anomaly
+Is there a problem with the hydration in the Danish pastry?,check_anomaly
+Is there a problem with the hydration in the kouign-amann?,check_anomaly
+Adjust the creme patissiere for 100 portions and show the recipe details,scale_recipe
+Can you double check the croissant recipe for errors?,check_anomaly
+Why is temperature control especially important when making tart tatin?,general
+Scale the kouign-amann recipe for 40 students and show me the ingredients,scale_recipe
+List out the ingredients for macarons,find_recipe
+Why does macarons dough need to rest before it's baked?,general
+Double check for me -- do you need to sift powdered sugar before using it?,general
+List the ingredients in the sourdough loaf recipe,find_recipe
+What causes brioche to turn out dense instead of light?,general
+Flag any anomalies in the sourdough loaf recipe,check_anomaly
+Is there a problem with the hydration in the brioche?,check_anomaly
+Show me the choux pastry recipe,find_recipe
+List out the ingredients for brioche,find_recipe
+Halve the lemon meringue tart recipe,scale_recipe
+Adjust the eclairs recipe for 100 portions,scale_recipe
+Make choux pastry for 30 people,scale_recipe
+What's the correct way to laminate butter into dough in general?,general
+I need the ingredient list for pain au levain,find_recipe
+What's the difference between Dutch-process and natural cocoa powder?,general
+Review the puff pastry for any wrong ratios,check_anomaly
+What yield should I expect from the lemon meringue tart recipe?,find_recipe
+I need to order ingredients for ganache,build_indent
+Multiply the eclairs recipe by 50,scale_recipe
+Triple the sourdough starter batch,scale_recipe
+Why do some pastry doughs need to stay cold while you work with them?,general
+Check if the sourdough loaf recipe has any anomalies,check_anomaly
+Validate the ganache ratios,check_anomaly
+Can I get the recipe for sourdough loaf?,find_recipe
+Halve the eclairs recipe,scale_recipe
+I need to order ingredients for next week's puff pastry class,build_indent
+Is there a problem with the hydration in the lemon meringue tart?,check_anomaly
+Adjust the country loaf recipe for 24 portions,scale_recipe
+I need to order ingredients for pate sucree,build_indent
+Scale pate sucree to 700g,scale_recipe
+Scale eclairs to 700g,scale_recipe
+Why do you fold laminated dough instead of just rolling it out flat?,general
+Show me a recipe that yields about 10 portions,find_recipe
+Is there a problem with the hydration in the macarons?,check_anomaly
+Why does egg wash give pastry a shiny golden crust?,general
+Review the brioche for any wrong ratios,check_anomaly
+How many servings does a batch of sourdough loaf produce?,find_recipe
+What happens chemically if sourdough starter dough is overmixed?,general
+What's considered the correct hydration percentage for a baguette?,general
+Scale the viennoiserie dough recipe for 30 students and show me the ingredients,scale_recipe
+Why does Danish pastry dough need to rest before it's baked?,general
+What role does gluten development play in a laminated pastry?,general
+What's a typical ratio of sugar to egg whites in a good meringue?,general
+Halve the Danish pastry recipe,scale_recipe
+What's a good hydration ratio for a rustic loaf in general?,general
+List the ingredients in the pate sucree recipe,find_recipe
+"Compile all the ingredients needed for croissants, financiers, and tarts",build_indent
+"Something feels off about the sourdough loaf recipe, can you check it?",check_anomaly
+Generate a purchase list for sourdough starter,build_indent
+Why do bakers rest lemon meringue tart dough in the fridge overnight?,general
+How do you check whether yeast is still active before using it?,general
+Why is temperature control especially important when making babka?,general
+I'll need the pate a choux recipe made for 700g,scale_recipe
+Make ganache for 20 people,scale_recipe
+How many servings does a batch of puff pastry produce?,find_recipe
+What order should a beginner learn pastry techniques in?,general
+"What's the correct internal temperature to check for a baked custard, generally speaking?",general
+Validate the measurements in the country loaf,check_anomaly
+I need the creme patissiere recipe for 2000g,scale_recipe
+What's in a classic opera cake?,find_recipe
+"Something feels off about the sourdough starter recipe, can you check it?",check_anomaly
+Why is temperature control especially important when making sourdough starter?,general
+How do I make pate sucree?,find_recipe
+What causes viennoiserie dough to turn out dense instead of light?,general
+What's in a classic pate sucree?,find_recipe
+Scale pain au levain to 700g,scale_recipe
+Scale the pate a choux to 30 portions,scale_recipe
+Check if the macarons recipe has any anomalies,check_anomaly
+Validate the measurements in the opera cake,check_anomaly
+I need to order ingredients for next week's macarons class,build_indent
+Flag any anomalies in the sourdough starter recipe,check_anomaly
+Double the palmiers,scale_recipe
+How do you review whether any dough has been kneaded enough?,general
+Can I get the financier for 1500g,scale_recipe
+Show me the eclairs recipe for 1500g,scale_recipe
+I need to order ingredients for next week's kouign-amann class,build_indent
+Check if the eclairs recipe has any anomalies,check_anomaly
+"Something feels off about the financier recipe, can you check it?",check_anomaly
+Can you list what's in the sourdough starter?,find_recipe
+Scale the macarons for 75 portions and list what's needed,scale_recipe
+What ingredients go into a sourdough loaf?,find_recipe
+Why does whipped cream deflate faster in a warm kitchen?,general
+Show me a recipe that yields about 50 portions,find_recipe
+What's in a classic brioche?,find_recipe
+"Something feels off about the babka recipe, can you check it?",check_anomaly
+Show me the pain au levain recipe for 2000g,scale_recipe
+Make a prep list for babka production,build_indent
+Validate the cinnamon rolls ratios,check_anomaly
+Double the viennoiserie dough recipe and give me the updated ingredient list,scale_recipe
+"Consolidate all ingredients for macarons, eclairs, and palmiers",build_indent
+"Something feels off about the puff pastry recipe, can you check it?",check_anomaly
+What causes pain au chocolat to turn out dense instead of light?,general
+Check if the tart tatin recipe has any anomalies,check_anomaly
 What goes into making sourdough starter?,find_recipe
 How do I make tart tatin?,find_recipe
-Adjust the Danish pastry recipe for 40 portions,scale_recipe
-Triple the eclairs batch,scale_recipe
+I need this recipe for 30 students,scale_recipe
+Adjust the macarons recipe for 30 portions,scale_recipe
 Give me the choux pastry recipe,find_recipe
-Validate the measurements in the ganache,check_anomaly
-Show me the pate a choux recipe,find_recipe
-What yield should I expect from the sourdough starter recipe?,find_recipe
-Validate the pate a choux ratios,check_anomaly
-Quadruple the banana tart,scale_recipe
-I need this recipe for 12 students,scale_recipe
-Does swapping bread flour for cake flour yield a chewier crumb?,general
-How many portions does the choux pastry recipe make?,find_recipe
-Halve the palmiers recipe,scale_recipe
-How does over-proofing affect the texture of an enriched dough?,general
-Scale babka to 500g,scale_recipe
-Pull up the croissant recipe,find_recipe
-How do I make opera cake?,find_recipe
-What does a typical production day look like at a pastry school?,general
-"Something feels off about the macarons recipe, can you check it?",check_anomaly
-"Something feels off about the tart tatin recipe, can you check it?",check_anomaly
-Check if the pate sucree recipe has any anomalies,check_anomaly
-How can you tell if caramel has crystallized incorrectly?,general
-Check if the sourdough starter recipe has any anomalies,check_anomaly
-What ingredients go into a opera cake?,find_recipe
-Adjust the cinnamon rolls recipe for 30 portions,scale_recipe
-How do I make choux pastry?,find_recipe
-Validate the measurements in the pain au chocolat,check_anomaly
-What's in a classic opera cake?,find_recipe
-What goes into making sourdough loaf?,find_recipe
-Check if the country loaf recipe has any anomalies,check_anomaly
-Make a prep list for Danish pastry production,build_indent
-Scale banana tart to 500g,scale_recipe
-Check the viennoiserie dough recipe for ratio errors,check_anomaly
-Double the sourdough loaf,scale_recipe
+I need to order ingredients for lemon meringue tart,build_indent
 Give me the creme patissiere recipe,find_recipe
-Review the ganache for any wrong ratios,check_anomaly
-Pull up the financier recipe,find_recipe
-Review the cinnamon rolls for any wrong ratios,check_anomaly
-What causes creme patissiere to turn out dense instead of light?,general
-Quadruple the pain au levain,scale_recipe
-Validate the measurements in the financier,check_anomaly
-Make lemon meringue tart for 10 people,scale_recipe
-Double the kouign-amann,scale_recipe
-How many servings does a batch of sourdough loaf produce?,find_recipe
-What ingredients go into a pate sucree?,find_recipe
-Triple the banana tart batch,scale_recipe
-What happens chemically if opera cake dough is overmixed?,general
-Review the viennoiserie dough for any wrong ratios,check_anomaly
-Generate a purchase list for pate a choux,build_indent
-Quadruple the kouign-amann,scale_recipe
-Where's the recipe card for kouign-amann?,find_recipe
-What's the difference between tempered and untempered chocolate?,general
-List the ingredients in the sourdough loaf recipe,find_recipe
-Review the puff pastry for any wrong ratios,check_anomaly
-How many portions does the croissant recipe make?,find_recipe
-Where's the recipe card for brioche?,find_recipe
-Show me the pain au levain recipe,find_recipe
-Put together an ordering sheet for creme patissiere,build_indent
-Why do bakers rest macarons dough in the fridge overnight?,general
-Flag any anomalies in the financier recipe,check_anomaly
-"Consolidate all ingredients for brioche, babka, and cinnamon rolls",build_indent
-Triple the lemon meringue tart batch,scale_recipe
-What's the smoke point difference between butter and clarified butter?,general
-Give me the Danish pastry recipe,find_recipe
-What happens chemically if eclairs dough is overmixed?,general
-Make a prep list for sourdough loaf production,build_indent
-List the ingredients in the cinnamon rolls recipe,find_recipe
-Flag any anomalies in the macarons recipe,check_anomaly
-Double the pain au levain,scale_recipe
-I need the ingredient list for choux pastry,find_recipe
-Give me the viennoiserie dough recipe,find_recipe
-List out the ingredients for kouign-amann,find_recipe
-Flag any anomalies in the Danish pastry recipe,check_anomaly
-Scale the palmiers to 100 portions,scale_recipe
-Why do bakers rest tart tatin dough in the fridge overnight?,general
-List out the ingredients for brioche,find_recipe
-I need the ingredient list for sourdough starter,find_recipe
-Validate the measurements in the cinnamon rolls,check_anomaly
-What happens chemically if country loaf dough is overmixed?,general
-"Just want to double check, is Dutch-process cocoa the same as natural cocoa?",general
-List out the ingredients for tart tatin,find_recipe
-What causes babka to turn out dense instead of light?,general
-Generate a purchase list for babka,build_indent
-What happens chemically if puff pastry dough is overmixed?,general
-Validate the sourdough starter ratios,check_anomaly
-I need to order ingredients for kouign-amann,build_indent
-Can you double check the brioche recipe for errors?,check_anomaly
-What ingredients go into a palmiers?,find_recipe
-Make Danish pastry for 12 people,scale_recipe
-Is there a problem with the hydration in the choux pastry?,check_anomaly
-What's the right order to add wet and dry ingredients when mixing cake batter?,general
-Why does chocolate seize when water is added to it?,general
-Scale the lemon meringue tart to 75 portions,scale_recipe
-Generate a purchase list for sourdough starter,build_indent
-Halve the pain au levain recipe,scale_recipe
-How many servings does a batch of puff pastry produce?,find_recipe
-What's in a classic lemon meringue tart?,find_recipe
-What's considered the correct hydration percentage for a baguette?,general
-Show me the ganache recipe,find_recipe
-Can I get the recipe for sourdough loaf?,find_recipe
-Put together an ordering sheet for opera cake,build_indent
-Why does whipped cream deflate faster in a warm kitchen?,general
-I need to order ingredients for next week's sourdough loaf class,build_indent
-Can you double check the Danish pastry recipe for errors?,check_anomaly
-Scale the pate sucree to 30 portions,scale_recipe
-Put together an ordering sheet for country loaf,build_indent
-"Something feels off about the banana tart recipe, can you check it?",check_anomaly
-Halve the cinnamon rolls recipe,scale_recipe
-What yield should I expect from the pate sucree recipe?,find_recipe
-Check if the sourdough loaf recipe has any anomalies,check_anomaly
-Show me a recipe that yields about 100 portions,find_recipe
-Put together an ordering sheet for sourdough loaf,build_indent
-What technique is responsible for puff pastry's flaky layers?,general
-Quadruple the eclairs,scale_recipe
-What's the purpose of scoring bread dough before it goes in the oven?,general
-Show me the pain au chocolat recipe,find_recipe
+What happens chemically if Danish pastry dough is overmixed?,general
+What yield should I expect from the sourdough starter recipe?,find_recipe
+Review the choux pastry for any wrong ratios,check_anomaly
+Validate the puff pastry ratios,check_anomaly
+Can you double check why caramel tends to seize up?,general
+Give me the sourdough starter recipe for 1500g,scale_recipe
+Quadruple the babka,scale_recipe
+Double the financier,scale_recipe
+Validate the measurements in the macarons,check_anomaly
+Check if the viennoiserie dough recipe has any anomalies,check_anomaly
 How many portions does the pate a choux recipe make?,find_recipe
-Why do enriched doughs take longer to proof than lean doughs?,general
+What's in a classic lemon meringue tart?,find_recipe
+Can I get the choux pastry for 400g,scale_recipe
+Can you double check the opera cake recipe for errors?,check_anomaly
+Where's the recipe card for kouign-amann?,find_recipe
+Validate the sourdough starter ratios,check_anomaly
+Show me the ganache recipe for 400g,scale_recipe
+Pull up the croissant recipe,find_recipe
+Compile all the ingredients needed for the viennoiserie class,build_indent
+Validate the country loaf ratios,check_anomaly
+Show me the pain au chocolat recipe,find_recipe
+How many portions does the croissant recipe make?,find_recipe
+Pull up the financier recipe,find_recipe
+Validate the viennoiserie dough ratios,check_anomaly
+I need to order ingredients for pate a choux,build_indent
+Can you double check the puff pastry recipe for errors?,check_anomaly
+Generate a purchase list for opera cake,build_indent
+Flag any anomalies in the pate sucree recipe,check_anomaly
+Can you double check the macarons recipe for errors?,check_anomaly
+What's the science behind why long fermentation improves sourdough flavor?,general
+Scale the pain au levain for 24 portions and list what's needed,scale_recipe
+How many portions does the ganache recipe make?,find_recipe
+Check the eclairs recipe for ratio errors,check_anomaly
+Adjust the palmiers for 12 portions and show the recipe details,scale_recipe
+Can I get the Danish pastry for 250g,scale_recipe
+Multiply the macarons recipe by 12,scale_recipe
+Make banana tart for 12 people,scale_recipe
+Check the tart tatin recipe for ratio errors,check_anomaly
+"Consolidate all ingredients for croissants, financiers, and tarts",build_indent
+Do we have a recipe for eclairs?,find_recipe
+Multiply the kouign-amann by 24 and give me the full ingredient list,scale_recipe
+Why do bakers rest tart tatin dough in the fridge overnight?,general
+I need to order ingredients for next week's Danish pastry class,build_indent
+What ingredients go into a palmiers?,find_recipe
+Put together an ordering sheet for sourdough loaf,build_indent
+Build an indent sheet for the tart tatin and financiers,build_indent
+Pull up the kouign-amann recipe,find_recipe
+What yield should I expect from the pain au levain recipe?,find_recipe
+Flag any anomalies in the financier recipe,check_anomaly
+Make the palmiers for 1000g,scale_recipe
+I need to order ingredients for banana tart,build_indent
+How many portions does the choux pastry recipe make?,find_recipe
+Triple the lemon meringue tart batch and show me what ingredients I'll need,scale_recipe
+Pull up the pate sucree recipe,find_recipe
+Show me the pate a choux recipe,find_recipe
 Can you list what's in the Danish pastry?,find_recipe
+Validate the Danish pastry ratios,check_anomaly
+Why does ganache dough need to rest before it's baked?,general
+Check the pain au levain recipe for ratio errors,check_anomaly
+I'll need the opera cake recipe made for 500g,scale_recipe
+I need this recipe for 60 students,scale_recipe
+What goes into making palmiers?,find_recipe
+I need to order ingredients for next week's palmiers class,build_indent
+How many servings does a batch of cinnamon rolls produce?,find_recipe
+What yield should I expect from the Danish pastry recipe?,find_recipe
+Can I get the babka for 500g,scale_recipe
+Is there a problem with the hydration in the sourdough starter?,check_anomaly
+Where's the recipe card for pate a choux?,find_recipe
+Show me the ganache recipe,find_recipe
+Make babka for 40 people,scale_recipe
+I should double check -- does baking soda expire over time?,general
+What causes macarons to develop feet during baking?,general
+Make the opera cake for 2000g,scale_recipe
+Multiply the creme patissiere by 20 and give me the full ingredient list,scale_recipe
+Put together an ordering sheet for pain au chocolat,build_indent
+Triple the viennoiserie dough batch and show me what ingredients I'll need,scale_recipe

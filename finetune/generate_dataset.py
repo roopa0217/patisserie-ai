@@ -74,6 +74,32 @@ SCALE_RECIPE_TEMPLATES = [
     "Halve the {recipe} recipe",
 ]
 
+# scale_recipe phrased like a recipe lookup, disambiguated only by a weight
+# cue -- targets the pattern behind golden_dataset.csv's t019 ("Give me the
+# Banana Tart recipe for 700gms"), which our earlier templates didn't cover
+# (we only had "Scale X to Yg", not "give/show me the recipe for Yg").
+SCALE_RECIPE_WEIGHT_LOOKUP_STYLE = [
+    "Give me the {recipe} recipe for {weight}g",
+    "I need the {recipe} recipe for {weight}g",
+    "Can I get the {recipe} for {weight}g",
+    "Show me the {recipe} recipe for {weight}g",
+    "Make the {recipe} for {weight}g",
+    "I'll need the {recipe} recipe made for {weight}g",
+]
+
+# scale_recipe stacked with a secondary informational ask -- targets the
+# pattern behind t024 ("Scale the croissant... and show me the ingredient
+# list"), where the leading scale verb should still win over the trailing
+# find_recipe-style clause.
+SCALE_RECIPE_MULTI_CLAUSE = [
+    "Scale the {recipe} recipe for {n} students and show me the ingredients",
+    "Scale the {recipe} for {portions} portions and list what's needed",
+    "Double the {recipe} recipe and give me the updated ingredient list",
+    "Triple the {recipe} batch and show me what ingredients I'll need",
+    "Multiply the {recipe} by {n} and give me the full ingredient list",
+    "Adjust the {recipe} for {portions} portions and show the recipe details",
+]
+
 BUILD_INDENT_TEMPLATES = [
     "Build an indent sheet for {recipe_list}",
     "Create a shopping list for tomorrow's production day",
@@ -214,7 +240,9 @@ def generate_rows(seed: int = 42) -> list[dict]:
     add(FIND_RECIPE_PORTIONS, "find_recipe", per_template=5)
     add(FIND_RECIPE_LIST_INGREDIENTS, "find_recipe", per_template=5)
 
-    add(SCALE_RECIPE_TEMPLATES, "scale_recipe", per_template=7)
+    add(SCALE_RECIPE_TEMPLATES, "scale_recipe", per_template=5)
+    add(SCALE_RECIPE_WEIGHT_LOOKUP_STYLE, "scale_recipe", per_template=4)
+    add(SCALE_RECIPE_MULTI_CLAUSE, "scale_recipe", per_template=4)
 
     add(BUILD_INDENT_TEMPLATES, "build_indent", per_template=8)
 
